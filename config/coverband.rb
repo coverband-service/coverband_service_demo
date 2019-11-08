@@ -5,6 +5,10 @@ module Coverband
   module Adapters
     ###
     # Take Coverband data and store a merged coverage set to the Coverband service
+    #
+    # NOTES:
+    # * uses net/http to avoid any dependencies
+    # * currently JSON, but likely better to move to something simpler / faster
     ###
     class Service < Base
 
@@ -31,11 +35,7 @@ module Coverband
         0
       end
 
-      def type=(type)
-        super
-      end
-
-      # TODO: no longer get by type just get full merged report
+      # TODO: no longer get by type just get both reports in a single request
       def coverage(local_type = nil, opts = {})
         local_type ||= opts.key?(:override_type) ? opts[:override_type] : type
         uri = URI("#{coverband_url}/api/coverage")
@@ -45,18 +45,18 @@ module Coverband
           http.request(req)
         end
         coverage_data = JSON.parse(res.body)
-        puts "coverage data: "
-        puts coverage_data
+        # puts "coverage data: "
+        # puts coverage_data
         coverage_data
       rescue => err
         puts "Coverband: Error while retrieving coverage #{err}"
       end
 
       def save_report(report)
-        # TODO: do we need dup
-        # TODO remove timestamps
         return if report.empty?
 
+        # TODO: do we need dup
+        # TODO: remove timestamps, server will track first_seen
         data = expand_report(report.dup)
         full_package = {
           coverband_id: coverband_id,
@@ -82,7 +82,7 @@ module Coverband
       def save_coverage(data)
         uri = URI("#{coverband_url}/api/collector")
         req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json', 'Coverband-Token' => 'abcd')
-        puts "sending #{data}"
+        # puts "sending #{data}"
         req.body = {remote_uuid: SecureRandom.uuid, data: data}.to_json
         res = Net::HTTP.start(uri.hostname, uri.port) do |http|
           http.request(req)
