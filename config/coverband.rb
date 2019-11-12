@@ -38,9 +38,8 @@ module Coverband
       # TODO: no longer get by type just get both reports in a single request
       def coverage(local_type = nil, opts = {})
         local_type ||= opts.key?(:override_type) ? opts[:override_type] : type
-        uri = URI("#{coverband_url}/api/coverage")
-        req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json', 'Coverband-Token' => 'abcd')
-        req.body = {coverband_id: coverband_id, type: local_type}.to_json
+        uri = URI("#{coverband_url}/api/coverage/#{coverband_id}?type=#{local_type}")
+        req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Coverband-Token' => 'abcd')
         res = Net::HTTP.start(uri.hostname, uri.port) do |http|
           http.request(req)
         end
