@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'securerandom'
 
 module Coverband
@@ -11,15 +12,14 @@ module Coverband
     # * currently JSON, but likely better to move to something simpler / faster
     ###
     class Service < Base
-
       attr_reader :coverband_url, :process_type, :runtime_env, :coverband_id
 
       def initialize(coverband_url, opts = {})
         super()
         @coverband_url = coverband_url
-        @process_type = opts.fetch(:process_type){ 'unknown' }
-        @runtime_env = opts.fetch(:runtime_env){ Rails.env }
-        @coverband_id = opts.fetch(:coverband_id){ 'coverband-service/coverband_service_demo' }
+        @process_type = opts.fetch(:process_type) { 'unknown' }
+        @runtime_env = opts.fetch(:runtime_env) { Rails.env }
+        @coverband_id = opts.fetch(:coverband_id) { 'coverband-service/coverband_service_demo' }
       end
 
       def clear!
@@ -40,14 +40,14 @@ module Coverband
         local_type ||= opts.key?(:override_type) ? opts[:override_type] : type
         uri = URI("#{coverband_url}/api/coverage/#{coverband_id}?type=#{local_type}")
         req = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json', 'Coverband-Token' => 'abcd')
-        res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
           http.request(req)
         end
         coverage_data = JSON.parse(res.body)
         # puts "coverage data: "
         # puts coverage_data
         coverage_data
-      rescue => err
+      rescue StandardError => err
         puts "Coverband: Error while retrieving coverage #{err}"
       end
 
@@ -67,7 +67,7 @@ module Coverband
               runtime_env: runtime_env
             },
             file_coverage: data
-          },
+          }
         }
         save_coverage(full_package)
       end
@@ -82,11 +82,11 @@ module Coverband
         uri = URI("#{coverband_url}/api/collector")
         req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json', 'Coverband-Token' => 'abcd')
         # puts "sending #{data}"
-        req.body = {remote_uuid: SecureRandom.uuid, data: data}.to_json
-        res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+        req.body = { remote_uuid: SecureRandom.uuid, data: data }.to_json
+        res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
           http.request(req)
         end
-      rescue => err
+      rescue StandardError => err
         puts "Coverband: Error while saving coverage #{err}"
       end
     end
@@ -122,7 +122,7 @@ Coverband.configure do |config|
   # toggle on and off gem file details
   # config.gem_details = true
 
-  # TODO the initial service will not support tracking views
+  # TODO: the initial service will not support tracking views
   # config.track_views = false
 
   # ignores bin started to show in runtime only ;)
@@ -136,8 +136,7 @@ Coverband.configure do |config|
                       config/spring.rb
                       config/environments/test.rb
                       config/environments/development.rb
-                      config/environments/production.rb
-                    ]
+                      config/environments/production.rb]
 
   # Logging when debugging
   config.logger = Rails.logger
