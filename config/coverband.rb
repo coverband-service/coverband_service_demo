@@ -47,8 +47,8 @@ module Coverband
         # puts "coverage data: "
         # puts coverage_data
         coverage_data
-      rescue StandardError => err
-        puts "Coverband: Error while retrieving coverage #{err}"
+      rescue StandardError => e
+        puts "Coverband: Error while retrieving coverage #{e}"
       end
 
       def save_report(report)
@@ -80,14 +80,14 @@ module Coverband
 
       def save_coverage(data)
         uri = URI("#{coverband_url}/api/collector")
-        req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json', 'Coverband-Token' => 'abcd')
-        # puts "sending #{data}"
+        req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json', 'Coverband-Token' => ENV['COVERBAND_API_KEY'])
+        puts "sending #{data}"
         req.body = { remote_uuid: SecureRandom.uuid, data: data }.to_json
         res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
           http.request(req)
         end
-      rescue StandardError => err
-        puts "Coverband: Error while saving coverage #{err}"
+      rescue StandardError => e
+        puts "Coverband: Error while saving coverage #{e}"
       end
     end
   end
