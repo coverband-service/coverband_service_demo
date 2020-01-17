@@ -16,3 +16,7 @@ COVERBAND_API_KEY
 # Deployment
 
 Automatically deploys when pushed to github.
+
+# Heroku Gem Caches
+
+I am coming up on 20m and heroku can't find my published gem
