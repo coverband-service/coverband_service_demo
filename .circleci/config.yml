@@ -55,7 +55,12 @@ jobs:
       - run: bundle exec rake db:reset db:migrate
 
       # compile assets 
-      - run: NODE_ENV=test bundle exec rails webpacker:compile
+      - run:
+          name: JS setup
+          command: |
+            yarn install
+            NODE_ENV=test bundle exec rails webpacker:compile
+
 
       # run tests!
       - run:
