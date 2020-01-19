@@ -54,6 +54,9 @@ jobs:
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run: bundle exec rake db:reset db:migrate
 
+      # compile assets 
+      run: NODE_ENV=test bundle exec rails webpacker:compile
+
       # run tests!
       - run:
           name: run tests
