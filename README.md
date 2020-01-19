@@ -6,11 +6,11 @@ This repo is to test an integration with Coverband Service.
 
 # Local Dev
 
-Ensure you setup your ENV vars:
+Ensure you setup your ENV vars: `.env.development.local`
 
 ```
-COVERBAND_URL
-COVERBAND_API_KEY
+COVERBAND_URL=xyz
+COVERBAND_API_KEY=zyx
 ```	
 
 # Deployment
