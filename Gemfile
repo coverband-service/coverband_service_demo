@@ -26,7 +26,10 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'coverband', '~> 4.2.4'
 gem 'coverband-service-client', '~> 0.0.2'
-#gem 'coverband-service-client', '~> 0.0.2', path: '/Users/danmayer/projects/coverband-service-client'
+
+# for local development
+# gem 'coverband', '~> 4.2.4', path: '/Users/danmayer/projects/coverband'
+# gem 'coverband-service-client', '~> 0.0.2', path: '/Users/danmayer/projects/coverband-service-client'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
