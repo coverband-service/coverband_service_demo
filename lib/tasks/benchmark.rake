@@ -32,7 +32,7 @@ namespace :benchmark do
     file = '/Users/danmayer/projects/coverband_service_demo/app/controllers/posts_controller.rb'
     file_length = File.read(file).split("\n").length
     fake_coverage = {
-      file => [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0]
+      file => [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0]
     }
 
     puts "simulating concurrency of #{possible_concurrent}"
