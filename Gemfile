@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'coverband-service-client', '~> 0.0.7'
+gem 'coverband-service-client', '~> 0.0.8'
 
 # for local development
 # gem 'coverband', '~> 4.2.4', path: '/Users/danmayer/projects/coverband'
