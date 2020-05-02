@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'dotenv-rails', groups: %i[development test]
+gem 'dotenv-rails', groups: %i[development test], require: 'dotenv/rails-now'
 gem 'pg'
 gem 'rails', '~> 6.0.0'
 # Use Puma as the app server
@@ -18,13 +18,18 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+
+# verify we support alternative view templates like HAML
+gem 'haml'
+
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'coverband-service-client', '~> 0.0.8'
+gem 'coverband-service-client'
+#gem 'coverband-service-client', path: '../coverband-service-client'
 
 # for local development
 # gem 'coverband', '~> 4.2.4', path: '/Users/danmayer/projects/coverband'
