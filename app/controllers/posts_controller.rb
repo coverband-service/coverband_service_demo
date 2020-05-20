@@ -61,6 +61,11 @@ class PostsController < ApplicationController
     end
   end
 
+  # Show what no coverage looks like
+  def unused_controller_endpoint
+    puts 'nothing can reach this'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

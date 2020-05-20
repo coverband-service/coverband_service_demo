@@ -15,6 +15,15 @@ require "action_view/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+# Toggle between Coverband staging or Coverband production
+if ENV['COVERBAND_TARGET'] == 'production'
+  ENV['COVERBAND_API_KEY'] = ENV['COVERBAND_PRODUCTION_KEY']
+  ENV['COVERBAND_URL'] = ENV['COVERBAND_PRODUCTION_URL']
+else
+  ENV['COVERBAND_API_KEY'] = ENV['COVERBAND_STAGING_KEY']
+  ENV['COVERBAND_URL'] = ENV['COVERBAND_STAGING_URL']
+end
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
