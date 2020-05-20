@@ -14,7 +14,7 @@ Coverband.configure do |config|
   config.store = Coverband::Adapters::Service.new(coverband_service_url)
   # in general I would leave the report time to the defaults,
   # but for the demo it is nice to update even faster
-  config.background_reporting_sleep_seconds = 10
+  config.background_reporting_sleep_seconds = 11
 
   # toggle on and off using oneshot
   # config.use_oneshot_lines_coverage = true
