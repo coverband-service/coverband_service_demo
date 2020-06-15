@@ -74,9 +74,10 @@ GEM
     childprocess (3.0.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
+    connection_pool (2.2.3)
     coverband (4.2.5)
       redis
-    coverband-service-client (0.0.8)
+    coverband-service-client (0.0.12.rc)
       coverband (~> 4.2.4)
     crass (1.0.6)
     dotenv (2.7.5)
@@ -111,6 +112,8 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     msgpack (1.3.1)
+    net-http-persistent (4.0.0)
+      connection_pool (~> 2.2)
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
@@ -160,7 +163,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    redis (4.1.4)
+    redis (4.2.1)
     regexp_parser (1.6.0)
     ruby_dep (1.5.0)
     rubyzip (2.0.0)
@@ -220,11 +223,12 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   capybara (>= 2.15)
-  coverband-service-client
+  coverband-service-client (~> 0.0.12.rc)
   dotenv-rails
   haml
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
+  net-http-persistent
   pg
   pry-byebug
   pry-rails

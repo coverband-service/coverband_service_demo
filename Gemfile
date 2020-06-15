@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'dotenv-rails', groups: %i[development test], require: 'dotenv/rails-now'
+gem 'dotenv-rails', groups: %i[development qa test], require: 'dotenv/rails-now'
 gem 'pg'
 gem 'rails', '~> 6.0.0'
 # Use Puma as the app server
@@ -28,17 +28,23 @@ gem 'haml'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'coverband-service-client'
+#gem 'coverband-service-client'
 #gem 'coverband-service-client', path: '../coverband-service-client'
 
+# to use the persistent client with coverband service install this gem prior
+# to coverband
+gem "net-http-persistent"
+
 # for local development
-# gem 'coverband', '~> 4.2.4', path: '/Users/danmayer/projects/coverband'
-# gem 'coverband-service-client', '~> 0.0.7', path: '/Users/danmayer/projects/coverband-service-client'
+# gem 'coverband', '~> 4.2.4', path: '../coverband'
+gem 'coverband-service-client', '~> 0.0.12.rc'
+# gem 'coverband-service-client', path: '../coverband-service-client'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
+  # add binding.pry to debug
   gem 'pry-byebug'
   gem 'pry-rails'
 end
