@@ -33,7 +33,7 @@ gem 'haml'
 
 # to use the persistent client with coverband service install this gem prior
 # to coverband
-# gem "net-http-persistent"
+gem "net-http-persistent"
 
 # to collect stats about coverband report time
 gem "dogapi"
