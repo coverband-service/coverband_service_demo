@@ -40,7 +40,7 @@ gem "dogapi"
 
 # for local development
 # gem 'coverband', '~> 4.2.4', path: '../coverband'
-gem 'coverband-service-client', '~> 0.0.12.rc.1'
+gem 'coverband-service-client', '~> 0.0.12.rc.2'
 # gem 'coverband-service-client', path: '../coverband-service-client'
 
 # Reduces boot times through caching; required in config/boot.rb
