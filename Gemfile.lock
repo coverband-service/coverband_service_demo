@@ -75,10 +75,10 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     connection_pool (2.2.3)
-    coverband (4.2.5)
+    coverband (5.0.0.rc.3)
       redis
-    coverband-service-client (0.0.12)
-      coverband (~> 4.2.4)
+    coverband-service-client (0.0.14)
+      coverband (~> 5.0.0.rc.3)
     crass (1.0.6)
     dogapi (1.40.0)
       multi_json
@@ -226,7 +226,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   capybara (>= 2.15)
-  coverband-service-client (~> 0.0.12)
+  coverband-service-client (~> 0.0.14)
   dogapi
   dotenv-rails
   haml
