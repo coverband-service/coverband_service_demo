@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'dotenv-rails', groups: %i[development qa test], require: 'dotenv/rails-now'
 gem 'pg'
 gem 'rails', '~> 6.0.0'
 # Use Puma as the app server
@@ -33,15 +32,25 @@ gem 'haml'
 
 # to use the persistent client with coverband service install this gem prior
 # to coverband
-gem "net-http-persistent"
+# gem "net-http-persistent"
 
 # to collect stats about coverband report time
 gem "dogapi"
 
+
+# from rubygems
+gem 'coverband', '~> 5.0.0.rc.4'
+
 # for local development
-# gem 'coverband', '~> 4.2.4', path: '../coverband'
-gem 'coverband-service-client', '~> 0.0.14'
+# gem 'coverband', '~> 5.0.0.rc.4', path: '../coverband'
+# gem 'coverband-service-client', '~> 0.0.14'
 # gem 'coverband-service-client', path: '../coverband-service-client'
+
+# ensure figaro loads how we want
+#gem "figaro"
+# rails now is not needed for using dotenv in your config/coverband.rb but it is needed for env vars
+# to be picked up by the coverband gem initialize if you want it to find defaults like coverband_url
+gem 'dotenv-rails', groups: %i[development qa test], require: 'dotenv/rails-now'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
