@@ -39,7 +39,7 @@ gem "dogapi"
 
 
 # from rubygems
-gem 'coverband', '~> 5.0.0.rc.5'
+gem 'coverband', '~> 5.0.0.rc.6'
 
 # for local development
 # gem 'coverband', '~> 5.0.0.rc.4', path: '../coverband'
