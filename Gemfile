@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '3.1.2'
 
 gem 'pg'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.1.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
@@ -40,6 +40,8 @@ gem "dogapi"
 
 # from rubygems
 gem 'coverband', '~> 5.0.0'
+
+gem 'psych', '< 4'
 
 # for local development
 # gem 'coverband', '~> 5.0.0.rc.4', path: '../coverband'
